@@ -16,11 +16,15 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
         "semi": ["error", "never"],
-        "quotes": ["error", "single"],
+        "quotes": ["off", "single"],
+        "prettier/prettier": ["off", {
+            "endOfLine":"auto"
+        }],
         "react/react-in-jsx-scope": "off"
     }
 }

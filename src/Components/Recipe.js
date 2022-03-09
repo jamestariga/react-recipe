@@ -2,7 +2,9 @@ import React from 'react'
 
 const Recipe = () => {
   return (
-    <h1>Hello</h1>
+    <>
+      <h1 className='text-5xl'>Hello</h1>
+    </>
   )
 }
 
