@@ -6,7 +6,6 @@ import { options } from './API/Api'
 
 const App = () => {
 
-  /* eslint-disable no-unused-vars */
   const [data, setData] = useState([])
 
   useEffect(() => {

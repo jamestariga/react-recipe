@@ -1,10 +1,14 @@
 export const options = {
     method: 'GET',
-    url: 'https://api.api-ninjas.com/v1/recipe',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search',
     params: {
-      query: 'cheeseburger'
+      query: {
+        tags: 'vegetarian,dessert',
+        number: '10'
+      },
     },
     headers: {
-      'X-Api-Key': 'GTFcyQ5xs0/j6KG7rV3jzg==WJ13oCWtAGfufGYY'
+      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+      'x-rapidapi-key': 'b5ed35b3f4mshc5693e64c0a0002p14fd5bjsn1b977ba16559'
     }
   }
