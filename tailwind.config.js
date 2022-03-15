@@ -13,17 +13,23 @@ module.exports = {
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
       },
+      flex: {
+        '30': '30%',
+        '70': '70%'
+      }
     },
     screens: {
       '2xl': {'max': '1535px'},
 
       'xl': {'max': '1279px'},
 
-      'lg': {'max': '1023px'},
+      'lg': {'max': '971px'},
 
       'md': {'max': '767px'},
 
-      'sm': {'max': '639px'},
+      'sm': { 'max': '639px' },
+      
+      'res': '970px'
     },
   },
   plugins: [],

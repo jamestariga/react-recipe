@@ -1,34 +1,24 @@
 import React from 'react'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import {
+  BrowserRouter as Router,
+  Route, Routes
+} from 'react-router-dom'
 import Recipe from './Recipe/Recipe'
-import { options } from './API/Api'
+import Navbar from './Navbar/Navbar'
+import Home from './Home/Home'
+
 
 const App = () => {
 
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  const getData = () => {
-
-    axios.request(options)
-      .then((res) => {
-        console.log(res.data)
-        setData(data => [...data, res.data])
-      })
-      .catch((err) => {
-      console.error(err)
-    })
-  }
-  
-  console.log(data)
-
   return (
     <>
-      <Recipe />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} exact />
+          <Route path='/recipe' element={<Recipe />} />
+        </Routes>
+      </Router>
     </>
   )
 }
