@@ -7,9 +7,7 @@ import Recipe from './Recipe/Recipe'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
 
-
 const App = () => {
-
   return (
     <>
       <Router>
