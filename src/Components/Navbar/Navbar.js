@@ -19,6 +19,7 @@ const Navbar = () => {
             <div className='flex items-center'>
               <Link className='p-10 text-xl text-white lg:hidden' to='/'>Home</Link>
               <Link className='p-10 text-xl text-white lg:hidden' to='/recipe'>Recipe</Link>
+              <Link className='p-10 text-xl text-white lg:hidden' to='/search'>Search</Link>
               <button className='bg-none border-none text-white cursor-pointer res:hidden'
                 onClick={() => {
                   setExtend((curr) => !curr)

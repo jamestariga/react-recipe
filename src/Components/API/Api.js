@@ -3,7 +3,7 @@ export const options = {
   url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
   params: {
       tags: 'vegetarian,dessert',
-      number: '10'
+      number: '12'
   },
   headers: {
     'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',

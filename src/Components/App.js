@@ -6,6 +6,7 @@ import {
 import Recipe from './Recipe/Recipe'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
+import Search from './Search/Search'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} exact />
           <Route path='/recipe' element={<Recipe />} />
+          <Route path='/search' element={<Search />} />
         </Routes>
       </Router>
     </>
