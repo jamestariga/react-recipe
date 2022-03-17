@@ -10,6 +10,7 @@ const Home = () => {
   
   useEffect(() => {
     getData()
+    // eslint-disable-next-line
   }, [])
 
   const getData = () => {
