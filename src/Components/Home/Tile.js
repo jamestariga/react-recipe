@@ -3,9 +3,11 @@ const Tile = (res) => {
 
   return (
     <>
-      <div className='m-2 p-2 text-center'>
-        <h1 className='text-xs m-2'>{title}</h1>
-        <img src={image} alt={image} />
+      <div className='flex flex-col my-4'>
+        <div className='w-auto h-full px-8 md:px-4'>
+          <h3 className='text-base lg:text-sm sm:text-xxs mb-2'>{title}</h3>
+          <img className='w-auto h-auto rounded-2xl' src={image} alt={image} />
+        </div>
       </div>
     </>
   )

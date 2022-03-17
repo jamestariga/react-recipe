@@ -26,8 +26,8 @@ const Home = () => {
 
   return (
     <>
-      <div className='flex justify-center p-4'>
-        <div className='grid grid-cols-3 lg:grid-cols-2 p-2 m-3'>
+      <div className='flex'>
+        <div className='grid grid-cols-4 items-center place-items-center xl:grid-cols-3 md:grid-cols-2 gap-8 h-auto p-8'>
           {data.map((res, key) => {
             return (
               <div key={key}>
