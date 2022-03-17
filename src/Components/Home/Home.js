@@ -5,7 +5,7 @@ import Tile from './Tile'
 const Home = () => {
 
   const [data, setData] = useState([])
-  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&cuisine=American&number=12`
+  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&cuisine=chinese&number=12`
   
   useEffect(() => {
     getData()
@@ -26,8 +26,8 @@ const Home = () => {
 
   return (
     <>
-      <div className='flex'>
-        <div className='grid grid-cols-4 items-center place-items-center xl:grid-cols-3 md:grid-cols-2 gap-8 h-auto p-8'>
+      <div className='flex justify-center'>
+        <div className='grid grid-cols-4 items-center place-items-center xl:grid-cols-3 lg:grid-cols-2 gap-8 h-auto p-8'>
           {data.map((res, key) => {
             return (
               <div key={key}>
