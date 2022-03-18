@@ -1,18 +1,31 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { options } from '../API/Api'
 import Tile from '../Home/Tile'
 
 const Recipe = () => {
 
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
+  const options = {
+    method: 'GET',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
+    params: {
+      tags: search.toString(),
+      number: '12'
+    },
+    headers: {
+      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_API_KEY
+    }
+  }
 
   useEffect(() => {
     getData()
     // eslint-disable-next-line
   }, [])
+
+  console.log(data)
 
   const getData = () => {
 
@@ -38,7 +51,7 @@ const Recipe = () => {
           <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
           dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
             type='text'
-            placeholder='Enter ingredient'
+            placeholder='Enter diet'
             autoComplete='false'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
