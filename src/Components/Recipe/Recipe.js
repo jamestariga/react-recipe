@@ -12,7 +12,8 @@ const Recipe = () => {
     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
     params: {
       tags: search.toString(),
-      number: '12'
+      number: '6',
+      instructionsRequired: 'true'
     },
     headers: {
       'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
@@ -25,10 +26,7 @@ const Recipe = () => {
     // eslint-disable-next-line
   }, [])
 
-  console.log(data)
-
   const getData = () => {
-
     axios.request(options)
       .then((res) => {
         console.log(res.data)

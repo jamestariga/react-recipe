@@ -6,7 +6,7 @@ const Home = () => {
 
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
-  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&query=${search}&number=12`
+  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&query=${search}&number=12&instructionsRequired=true`
   
   useEffect(() => {
     getData()
