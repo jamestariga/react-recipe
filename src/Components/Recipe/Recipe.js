@@ -63,7 +63,7 @@ const Recipe = () => {
 
   return (
     <>
-      <div className='flex justify-center w-full p-5 my-40 px-20'>
+      <div className='flex justify-center w-full p-5 mt-40 mb-20 px-20'>
         <form className='flex flex-row justify-between w-4/5 sm:w-full' onSubmit={onSubmit}>
           <input
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
@@ -88,7 +88,7 @@ const Recipe = () => {
             return (
               <div
                 key={key}
-                className='flex flex-col p-8 sm:px-2 bg-transparent border border-x-slate-500 border-y-slate-500 rounded-3xl bg-teal-400'>
+                className='flex flex-col p-8 sm:px-2 bg-teal-800 border border-x-slate-500 border-y-slate-500 rounded-3xl'>
                 <div className='w-full px-8 md:px-4 sm:px-2 flex justify-center'>
                   <img className='w-auto h-full rounded-2xl' src={image} alt={image} />
                 </div>
@@ -99,8 +99,13 @@ const Recipe = () => {
                   return (
                     <div key={id}>
                       <ul>
-                        <li className='text-white list-disc'>
-                          <p className='text-white'>{step.step}</p>
+                        <li className='text-white'>
+                          <p className='text-white tex my-2'>
+                            <span>Step </span>
+                            {step.number}
+                            <span>: </span>
+                            {step.step}
+                          </p>
                         </li>
                       </ul>
                     </div>
