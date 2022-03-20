@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import Card from './Card'
 
 const Recipe = () => {
   const [data, setData] = useState([])
@@ -25,16 +24,37 @@ const Recipe = () => {
   }, [])
 
   const getData = () => {
-    axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data)
-        setData(res.data.recipes)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    // Caching the fetched data in the browser
+    const check = localStorage.getItem('recipe')
+
+    if (check) {
+      setData(JSON.parse(check))
+      console.log('cached')
+    } else {
+      axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data)
+          localStorage.setItem('recipe', JSON.stringify(res.data.recipes))
+          setData(res.data.recipes)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
   }
+
+  console.log(data)
+
+  // {
+  //   data.map((steps) => {
+  //     steps.analyzedInstructions.map((res) => {
+  //       res.steps.map((rez) => {
+  //         console.log(rez.step)
+  //       })
+  //     })
+  //   })
+  // }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -43,31 +63,49 @@ const Recipe = () => {
 
   return (
     <>
-      <div className='flex justify-center w-full p-5 mt-40'>
-        <form className='flex flex-row justify-between' onSubmit={onSubmit}>
+      <div className='flex justify-center w-full p-5 my-40 px-20'>
+        <form className='flex flex-row justify-between w-4/5 sm:w-full' onSubmit={onSubmit}>
           <input
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
-          dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
+          dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 sm:text-xs'
             type='text'
-            placeholder='Enter diet'
+            placeholder='Search Ingredient'
             autoComplete='false'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <input
-            className='text-white bg-teal-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
-          p-3 ml-2'
+            className='text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+          p-3 ml-2 w-40 md:w-20'
             type='submit'
             value='Search'
           />
         </form>
       </div>
       <div className='flex justify-center'>
-        <div className='grid grid-cols-4 items-center place-items-center xl:grid-cols-3 lg:grid-cols-2 gap-8 h-auto p-8'>
-          {data.map((res, key) => {
+        <div className='grid grid-cols-2 lg:grid-cols-1 gap-8 h-auto p-8'>
+          {data.map(({ image, title, analyzedInstructions: [{ steps }] }, key) => {
             return (
-              <div key={key}>
-                <Card {...res} />
+              <div
+                key={key}
+                className='flex flex-col p-8 sm:px-2 bg-transparent border border-x-slate-500 border-y-slate-500 rounded-3xl bg-teal-400'>
+                <div className='w-full px-8 md:px-4 sm:px-2 flex justify-center'>
+                  <img className='w-auto h-full rounded-2xl' src={image} alt={image} />
+                </div>
+                <h3 className='text-base text-center lg:text-sm sm:text-xxs my-10 text-white'>
+                  {title}
+                </h3>
+                {steps.map((step, id) => {
+                  return (
+                    <div key={id}>
+                      <ul>
+                        <li className='text-white list-disc'>
+                          <p className='text-white'>{step.step}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  )
+                })}
               </div>
             )
           })}
