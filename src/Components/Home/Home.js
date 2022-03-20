@@ -38,13 +38,15 @@ const Home = () => {
   return (
     <>
       <div className='flex justify-center flex-col px-20 xl:px-10 md:px-0 text-white'>
-        <h1 className='text-center text-3xl font-extrabold my-20 md:text-2xl'>Popular Recipes</h1>
+        <h1 className='text-center text-3xl font-extrabold mb-20 mt-40 md:text-2xl'>
+          Popular Recipes
+        </h1>
         <Splide
-          className='list-disc py-14 md:py-10'
+          className='list-disc list-inside py-14 md:py-10'
           options={{
             perPage: 3,
             arrows: true,
-            pagination: true,
+            pagination: false,
             width: '100vw',
             drag: 'free',
             autoplay: true,
@@ -60,7 +62,8 @@ const Home = () => {
                 perPage: 1
               }
             }
-          }}>
+          }}
+          hasAutoplayProgress>
           {data.map((res, key) => {
             return (
               <SplideSlide key={key} className='flex justify-center sm:px-8'>

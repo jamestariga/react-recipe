@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import Tile from '../Home/Tile'
+import Card from './Card'
 
 const Recipe = () => {
-
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
   const options = {
@@ -12,8 +11,7 @@ const Recipe = () => {
     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
     params: {
       tags: search.toString(),
-      number: '6',
-      instructionsRequired: 'true'
+      number: '6'
     },
     headers: {
       'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
@@ -27,26 +25,28 @@ const Recipe = () => {
   }, [])
 
   const getData = () => {
-    axios.request(options)
+    axios
+      .request(options)
       .then((res) => {
         console.log(res.data)
         setData(res.data.recipes)
       })
       .catch((err) => {
-      console.error(err)
-    })
+        console.error(err)
+      })
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     getData()
   }
-  
+
   return (
     <>
-      <div className='flex justify-center w-full p-5'>
+      <div className='flex justify-center w-full p-5 mt-40'>
         <form className='flex flex-row justify-between' onSubmit={onSubmit}>
-          <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
+          <input
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
           dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
             type='text'
             placeholder='Enter diet'
@@ -54,10 +54,12 @@ const Recipe = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <input className='text-white bg-teal-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+          <input
+            className='text-white bg-teal-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
           p-3 ml-2'
             type='submit'
-            value='Search' />
+            value='Search'
+          />
         </form>
       </div>
       <div className='flex justify-center'>
@@ -65,7 +67,7 @@ const Recipe = () => {
           {data.map((res, key) => {
             return (
               <div key={key}>
-                <Tile {...res} />
+                <Card {...res} />
               </div>
             )
           })}

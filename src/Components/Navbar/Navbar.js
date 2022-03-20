@@ -9,8 +9,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='flex flex-col items-center w-full h-auto bg-teal-600'>
-        <div className='flex w-full h-20'>
+      <nav className='flex flex-col items-center w-full h-auto'>
+        <div className='flex w-full h-20 z-50 fixed overflow-hidden bg-teal-600'>
           <div className='flex flex-70 items-center pl-20'>
             <h1 className='text-3xl font-semibold text-white'>Recipe</h1>
           </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
         </div>
         {extend && (
-          <div className='flex flex-col items-center w-screen h-screen bg-teal-700 z-20'>
+          <div className='flex flex-col items-center w-full h-full mt-20 bg-teal-700 z-50 fixed'>
             <Link className='p-10 text-xl text-white res:hidden' to='/'>
               Home
             </Link>

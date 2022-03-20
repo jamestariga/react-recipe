@@ -3,25 +3,25 @@ import axios from 'axios'
 import Tile from '../Home/Tile'
 
 const Home = () => {
-
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
-  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&query=${search}&number=12&instructionsRequired=true`
-  
+  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&query=${search}&instructionsRequired=true&number=12`
+
   useEffect(() => {
     getData()
     // eslint-disable-next-line
   }, [])
 
   const getData = () => {
-    axios.get(URL)
+    axios
+      .get(URL)
       .then((res) => {
         console.log(res.data)
         setData(res.data.results)
       })
       .catch((err) => {
-      console.error(err)
-    })
+        console.error(err)
+      })
   }
 
   const onSubmit = (e) => {
@@ -32,8 +32,9 @@ const Home = () => {
   return (
     <>
       <div className='flex justify-center w-full p-5'>
-        <form className='flex flex-row justify-between' onSubmit={onSubmit}>
-          <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
+        <form className='flex flex-row justify-between mt-40' onSubmit={onSubmit}>
+          <input
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
           dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
             type='text'
             placeholder='Enter ingredient'
@@ -41,10 +42,12 @@ const Home = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <input className='text-white bg-teal-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+          <input
+            className='text-white bg-teal-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
           p-3 ml-2'
             type='submit'
-            value='Search' />
+            value='Search'
+          />
         </form>
       </div>
       <div className='flex justify-center'>
