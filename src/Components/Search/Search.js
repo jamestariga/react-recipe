@@ -5,7 +5,7 @@ import Tile from '../Home/Tile'
 const Home = () => {
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
-  const URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&query=${search}&instructionsRequired=true&number=12`
+  const URL = `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SEARCH}&tags=${search}&number=12`
 
   useEffect(() => {
     getData()
@@ -17,7 +17,7 @@ const Home = () => {
       .get(URL)
       .then((res) => {
         console.log(res.data)
-        setData(res.data.results)
+        setData(res.data.recipes)
       })
       .catch((err) => {
         console.error(err)
@@ -32,7 +32,9 @@ const Home = () => {
   return (
     <>
       <div className='flex justify-center w-full p-5'>
-        <form className='flex flex-row justify-between mt-40' onSubmit={onSubmit}>
+        <form
+          className='flex flex-row justify-between mt-40'
+          onSubmit={onSubmit}>
           <input
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
           dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500'
