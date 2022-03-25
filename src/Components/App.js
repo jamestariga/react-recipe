@@ -1,12 +1,9 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route, Routes
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Recipe from './Recipe/Recipe'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
 import Search from './Search/Search'
+import Footer from './Footer/Footer'
 
 const App = () => {
   return (
@@ -18,6 +15,7 @@ const App = () => {
           <Route path='/recipe' element={<Recipe />} />
           <Route path='/search' element={<Search />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   )
