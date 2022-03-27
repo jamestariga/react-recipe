@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <>
       <IconContext.Provider value={{ size: '30px' }}>
-        <footer className='text-center bg-teal-600 text-white'>
+        <footer className='text-center bg-stone-600 text-white'>
           <div className='w-full px-6 py-6'>
             <div className='flex justify-center items-center'>
               <div className='flex justify-evenly w-1/2'>
@@ -23,7 +23,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className='text-center bg-teal-700 py-2'>
+          <div className='text-center bg-stone-700 py-2'>
             <p>© 2021 Copyright: James Tariga</p>
           </div>
         </footer>
