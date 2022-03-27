@@ -1,15 +1,19 @@
-import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icons/md'
+import { IconContext } from 'react-icons'
 
 const Recipe = () => {
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
+  const [openInstructions, setOpenInstructions] = useState(false)
+  const [openIngredients, setOpenIngredients] = useState(false)
+
   const options = {
     method: 'GET',
     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
     params: {
-      tags: search.toString(),
+      tags: search.toString().split(' ').join(','),
       number: '6'
     },
     headers: {
@@ -44,17 +48,37 @@ const Recipe = () => {
     }
   }
 
+  // const getData = () => {
+  //   axios
+  //     .request(options)
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       setData(res.data.recipes)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }
+
   console.log(data)
 
-  // {
-  //   data.map((steps) => {
-  //     steps.analyzedInstructions.map((res) => {
-  //       res.steps.map((rez) => {
-  //         console.log(rez.step)
-  //       })
-  //     })
-  //   })
-  // }
+  const toggleIngredients = (idx) => {
+    if (openIngredients === idx) {
+      //if clicked question is already active, then close it
+      return setOpenIngredients(null)
+    }
+
+    setOpenIngredients(idx)
+  }
+
+  const toggleInstructions = (index) => {
+    if (openInstructions === index) {
+      //if clicked question is already active, then close it
+      return setOpenInstructions(null)
+    }
+
+    setOpenInstructions(index)
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -63,59 +87,104 @@ const Recipe = () => {
 
   return (
     <>
-      <div className='flex justify-center w-full p-5 mt-40 mb-20 px-20'>
-        <form className='flex flex-row justify-between w-4/5 sm:w-full' onSubmit={onSubmit}>
-          <input
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mr-2 
-          dark:bg-gray-700 dark:border-gray-400 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 sm:text-xs'
-            type='text'
-            placeholder='Search Ingredient'
-            autoComplete='false'
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <input
-            className='text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+      <IconContext.Provider value={{ color: '#ffebcc', size: '35px' }}>
+        <div className='flex justify-center w-full p-5 mt-40 mb-20 px-20'>
+          <form
+            className='flex flex-row justify-between w-4/5 sm:w-full'
+            onSubmit={onSubmit}>
+            <input
+              className=' bg-white text-black w-full rounded-xl focus:outline-none focus:ring focus:ring-stone-300 p-2 mr-4 sm:text-xs transition'
+              type='text'
+              placeholder='Search Ingredient'
+              autoComplete='false'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <input
+              className='text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
           p-3 ml-2 w-40 md:w-20'
-            type='submit'
-            value='Search'
-          />
-        </form>
-      </div>
-      <div className='flex justify-center'>
-        <div className='grid grid-cols-2 lg:grid-cols-1 gap-8 h-auto p-8'>
-          {data.map(({ image, title, analyzedInstructions: [{ steps }] }, key) => {
-            return (
-              <div
-                key={key}
-                className='flex flex-col p-8 sm:px-2 bg-teal-800 border border-x-slate-500 border-y-slate-500 rounded-3xl'>
-                <div className='w-full px-8 md:px-4 sm:px-2 flex justify-center'>
-                  <img className='w-auto h-full rounded-2xl' src={image} alt={image} />
-                </div>
-                <h3 className='text-base text-center lg:text-sm sm:text-xxs my-10 text-white'>
-                  {title}
-                </h3>
-                {steps.map((step, id) => {
-                  return (
-                    <div key={id}>
-                      <ul>
-                        <li className='text-white'>
-                          <p className='text-white tex my-2'>
-                            <span>Step </span>
-                            {step.number}
-                            <span>: </span>
-                            {step.step}
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          })}
+              type='submit'
+              value='Search'
+            />
+          </form>
         </div>
-      </div>
+        {/* Content Section */}
+        <div className='grid grid-cols-3 xl:grid-cols-2 md:grid-cols-1 gap-8 p-8 mb-28 md:m-16 sm:m-8 h-fit'>
+          {data.map(
+            (
+              {
+                image,
+                title,
+                analyzedInstructions: [{ steps }],
+                extendedIngredients
+              },
+              key
+            ) => {
+              return (
+                <div
+                  key={key}
+                  className='flex flex-col justify-center h-fit p-8 sm:px-2 bg-stone-400 hover:bg-stone-500 transition  rounded-3xl'>
+                  <div className='w-full p-8 md:p-4'>
+                    <img
+                      className='w-auto h-full rounded-2xl'
+                      src={image}
+                      alt={image}
+                    />
+                  </div>
+                  <h3 className='text-xl text-center xl:text-base sm:text-sm my-10 font-extrabold text-white'>
+                    {title}
+                  </h3>
+                  <div
+                    onClick={() => toggleIngredients(key)}
+                    className='flex flex-row justify-between items-center font-bold sm:text-sm text-white cursor-pointer mb-4 p-2'>
+                    <h3>Ingredients:</h3>
+                    {openIngredients === key ? (
+                      <MdKeyboardArrowUp />
+                    ) : (
+                      <MdOutlineKeyboardArrowDown />
+                    )}
+                  </div>
+                  {openIngredients === key
+                    ? extendedIngredients.map((names, idx) => {
+                        return (
+                          <div key={idx}>
+                            <p className='text-white text-base my-2 sm:text-sm'>
+                              {names.original}
+                            </p>
+                          </div>
+                        )
+                      })
+                    : null}
+                  <div
+                    onClick={() => toggleInstructions(key)}
+                    className='flex flex-row justify-between font-bold sm:text-sm text-white cursor-pointer mt-4 p-2'>
+                    <h3>Instructions:</h3>
+                    {openInstructions === key ? (
+                      <MdKeyboardArrowUp />
+                    ) : (
+                      <MdOutlineKeyboardArrowDown />
+                    )}
+                  </div>
+                  {openInstructions === key
+                    ? steps.map((step, id) => {
+                        return (
+                          <div key={id}>
+                            <p className='text-white tex my-2 sm:text-sm'>
+                              <span>Step </span>
+                              {step.number}
+                              <span>: </span>
+                              {step.step}
+                            </p>
+                          </div>
+                        )
+                      })
+                    : null}
+                </div>
+              )
+            }
+          )}
+        </div>
+      </IconContext.Provider>
     </>
   )
 }
