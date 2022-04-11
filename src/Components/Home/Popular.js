@@ -1,57 +1,42 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
 import Tile from './Tile'
 import { Theme } from './Theme'
+import useFetch from '../Hooks/useFetch'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Popular = () => {
-  const [data, setData] = useState([])
-  const URL = `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SEARCH}&number=12`
+  const [data, { loading }] = useFetch('', 'popular')
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  const getData = () => {
-    // Caching the fetched data in the browser
-    const check = localStorage.getItem('popular')
-
-    if (check) {
-      setData(JSON.parse(check))
-      console.log('cached')
-    } else {
-      axios
-        .get(URL)
-        .then((res) => {
-          console.log(res.data)
-          localStorage.setItem('popular', JSON.stringify(res.data.recipes))
-          setData(res.data.recipes)
-        })
-        .catch((err) => {
-          console.error(err)
-        })
-    }
+  const spinTransition = {
+    loop: Infinity,
+    ease: 'linear',
+    duration: 1
   }
-
-  // const getData = () => {
-  //   axios
-  //     .get(URL)
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       setData(res.data.recipes)
-  //     })
-  //     .catch((err) => {
-  //       console.error(err)
-  //     })
-  // }
 
   console.log(data)
 
+  if (loading)
+    return (
+      <>
+        <AnimatePresence>
+          <div className='flex flex-col justify-center items-center h-screen text-black'>
+            <motion.span
+              className='flex justify-center items-center w-20 h-20 border-[0.8rem] border-solid border-slate-300 border-t-[0.8rem] border-t-stone-600 rounded-full'
+              animate={{ rotate: 360 }}
+              transition={spinTransition}></motion.span>
+            <span className='text-stone-500 font-extrabold text-5xl mt-4 lg:text-3xl sm:text-2xl'>
+              Fetching Recipe
+            </span>
+          </div>
+        </AnimatePresence>
+      </>
+    )
+
   return (
     <>
-      <div className='flex justify-center flex-col px-20 mt-20 xl:px-10 md:px-0 text-black'>
-        <h1 className='text-center text-3xl font-extrabold mt-20 md:text-2xl'>
+      <div className='flex justify-center flex-col px-20 mt-20 xl:px-10 md:px-0'>
+        <h1 className='text-center text-3xl font-extrabold text-zinc-600 mt-20 md:text-2xl'>
           Popular Recipes
         </h1>
         <Splide
