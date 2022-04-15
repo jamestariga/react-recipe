@@ -15,6 +15,7 @@ $ npm install eslint --save-dev
 $ npm init @eslint/config
 $ npm install --save-dev --save-exact prettier
 $ npm install @splidejs/react-splide
+$ npm install framer-motion
 ```
 
 ## Run the app locally
