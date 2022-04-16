@@ -6,7 +6,7 @@ import useFetch from '../Hooks/useFetch'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const Popular = () => {
-  const [data, { loading }] = useFetch('', 'popular')
+  const [data, { loading }] = useFetch('')
 
   const spinTransition = {
     loop: Infinity,

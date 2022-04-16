@@ -13,11 +13,11 @@ const Home = () => {
   const getData = (name) => {
     axios
       .get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SEARCH}&cuisine=${name}&number=12`
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SEARCH}&tags=${name}&number=12`
       )
       .then((res) => {
         console.log(res.data)
-        setData(res.data.results)
+        setData(res.data.recipes)
       })
       .catch((err) => {
         console.error(err)

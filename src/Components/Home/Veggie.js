@@ -5,7 +5,7 @@ import { Theme } from './Theme'
 import useFetch from '../Hooks/useFetch'
 
 const Veggies = () => {
-  const [data, { loading }] = useFetch('vegetarian', 'veggies')
+  const [data, { loading }] = useFetch('vegetarian')
 
   if (loading) return null
 
