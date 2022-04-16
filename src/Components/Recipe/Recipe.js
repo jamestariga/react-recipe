@@ -94,7 +94,7 @@ const Recipe = () => {
           initial={{ width: '100%' }}
           animate={{ width: '100%' }}
           exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}>
-          <div className='flex justify-center w-full p-5 mb-20 px-20 md:px-10 sm:px-8'>
+          <div className='flex justify-center w-full p-5 pt-20 mb-20 px-20 md:pt-10 md:px-10 sm:px-8'>
             <form
               className='flex flex-row justify-between w-4/5 sm:w-full'
               onSubmit={onSubmit}>

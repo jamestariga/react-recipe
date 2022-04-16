@@ -35,7 +35,7 @@ const Popular = () => {
 
   return (
     <>
-      <div className='flex justify-center flex-col px-20 xl:px-10 md:px-0'>
+      <div className='flex justify-center flex-col px-20 pt-20 md:pt-10 xl:px-10 md:px-0'>
         <h1 className='text-center text-3xl font-extrabold text-zinc-600 md:text-2xl'>
           Popular Recipes
         </h1>
