@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='flex flex-col items-center w-full h-auto'>
+      <nav className='flex flex-col items-center w-full h-auto mb-20 md:mb-10'>
         <div className='flex w-full h-20 z-50 fixed overflow-hidden bg-stone-600'>
           <div className='flex flex-70 items-center pl-20'>
             <h1 className='text-3xl font-semibold text-white cursor-pointer hover:scale-[1.3] duration-300'>
