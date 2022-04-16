@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='flex flex-col items-center w-full h-auto mb-32 md:mb-10'>
+      <div className='flex flex-col items-center w-full h-auto pb-32 md:pb-10'>
         <div className='flex w-full h-20 z-50 fixed overflow-hidden bg-stone-600'>
           <div className='flex flex-70 items-center pl-20'>
             <h1 className='text-3xl font-semibold text-white cursor-pointer hover:scale-[1.3] duration-300'>
@@ -79,7 +79,7 @@ const Navbar = () => {
         <AnimatePresence>
           {extend && (
             <motion.div
-              className='flex flex-col justify-center items-center w-full h-full bg-stone-700 z-50 fixed font-bold res:hidden'
+              className='flex flex-col justify-center items-center w-full h-full mt-20 bg-stone-700 z-50 fixed font-bold res:hidden'
               initial='hidden'
               animate={extend ? 'visible' : 'exit'}
               exit='exit'
@@ -111,7 +111,7 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      </div>
     </>
   )
 }
