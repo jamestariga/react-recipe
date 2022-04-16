@@ -9,7 +9,7 @@ const Category = () => {
     <>
       <IconContext.Provider
         value={{ color: '#000', size: '35px', margin: 'auto' }}>
-        <div className='flex justify-center items-center flex-wrap w-full p-5 mb-20 pt-20 px-20 md:pt-10 md:mb-4 md:px-10 sm:px-8 font-bold'>
+        <div className='flex justify-center items-center flex-wrap w-full p-5 mb-20 mt-20 px-20 md:mt-10 md:mb-4 md:px-10 sm:px-8 font-bold'>
           <div className='flex justify-center items-center m-4 text-center'>
             <NavLink to={'/search/american'}>
               <FaHamburger />
