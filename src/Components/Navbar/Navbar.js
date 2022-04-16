@@ -79,7 +79,7 @@ const Navbar = () => {
         <AnimatePresence>
           {extend && (
             <motion.div
-              className='flex flex-col justify-center items-center w-full h-full mt-20 bg-stone-700 z-50 fixed font-bold res:hidden'
+              className='flex flex-col justify-center items-center w-full h-full bg-stone-700 z-50 fixed font-bold res:hidden'
               initial='hidden'
               animate={extend ? 'visible' : 'exit'}
               exit='exit'
