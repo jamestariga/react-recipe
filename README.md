@@ -2,7 +2,7 @@
 
 ## Background
 
-A recipe web app that utilizes the spoonacular [API]("https://spoonacular.com/food-api/docs"). View the site [here]("https://jamestariga-recipe-app.netlify.app/").
+A recipe web app that utilizes the spoonacular [API](https://spoonacular.com/food-api/docs). View the site [here](https://jamestariga-recipe-app.netlify.app/).
 
 ## Installing Dependencies
 
