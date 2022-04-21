@@ -153,17 +153,16 @@ const Recipe = () => {
                           <MdOutlineKeyboardArrowDown />
                         )}
                       </div>
-                      {openIngredients === key
-                        ? extendedIngredients.map((names, idx) => {
-                            return (
-                              <div key={idx}>
-                                <p className='text-white text-base my-2 sm:text-sm duration-300'>
-                                  {names.original}
-                                </p>
-                              </div>
-                            )
-                          })
-                        : null}
+                      {openIngredients === key &&
+                        extendedIngredients.map((names, idx) => {
+                          return (
+                            <div key={idx}>
+                              <p className='text-white text-base my-2 sm:text-sm duration-300'>
+                                {names.original}
+                              </p>
+                            </div>
+                          )
+                        })}
                       <div
                         onClick={() => toggleInstructions(key)}
                         className='flex flex-row justify-between items-center font-bold sm:text-sm text-white cursor-pointer mt-4 py-2 border-t-[2px]'>
@@ -174,20 +173,19 @@ const Recipe = () => {
                           <MdOutlineKeyboardArrowDown />
                         )}
                       </div>
-                      {openInstructions === key
-                        ? steps.map((step, id) => {
-                            return (
-                              <div key={id}>
-                                <p className='text-white tex my-2 sm:text-sm'>
-                                  <span>Step </span>
-                                  {step.number}
-                                  <span>: </span>
-                                  {step.step}
-                                </p>
-                              </div>
-                            )
-                          })
-                        : null}
+                      {openInstructions === key &&
+                        steps.map((step, id) => {
+                          return (
+                            <div key={id}>
+                              <p className='text-white tex my-2 sm:text-sm'>
+                                <span>Step </span>
+                                {step.number}
+                                <span>: </span>
+                                {step.step}
+                              </p>
+                            </div>
+                          )
+                        })}
                     </div>
                   </div>
                 )
